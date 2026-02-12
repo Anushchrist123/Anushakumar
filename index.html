@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anusha Kumar - Data Engineer & ML Practitioner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: #0B0F17;
+      --foreground: #F7FAFC;
+      --muted: #111827;
+      --muted-foreground: #A9B3C1;
+      --primary: #2DD4BF;
+      --border: rgba(247, 250, 252, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .font-mono {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* Navigation - Always Visible */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(11, 15, 23, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--foreground);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted-foreground);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--foreground);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--foreground);
+      cursor: pointer;
+    }
+
+    /* Main Content */
+    main {
+      padding-top: 70px;
+    }
+
+    section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: calc(100vh - 70px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-image {
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .hero-text .eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .hero-text h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-text p {
+      color: var(--muted-foreground);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      border-radius: 9999px;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary);
+      color: var(--background);
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: gap 0.3s ease;
+    }
+
+    .btn-link:hover {
+      gap: 0.75rem;
+    }
+
+    /* Section Headers */
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      color: var(--muted-foreground);
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.5rem;
+    }
+
+    /* About Section */
+    .workflow-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .workflow-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(45, 212, 191, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .workflow-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--primary);
+    }
+
+    .workflow-item h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .workflow-item p {
+      color: var(--muted-foreground);
+      font-size: 0.9rem;
+    }
+
+    /* Skills Section */
+    .skill-category {
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-category h3 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--muted-foreground);
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(247, 250, 252, 0.12);
+      background: rgba(17, 24, 39, 0.5);
+      font-size: 0.875rem;
+    }
+
+    .skill-pill::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    /* Experience Section */
+    .experience-header {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .experience-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(45, 212, 191, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .experience-icon svg {
+      width: 22px;
+      height: 22px;
+      color: var(--primary);
+    }
+
+    .experience-title h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .experience-title .company {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .experience-meta {
+      display: flex;
+      gap: 1.5rem;
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+
+    .experience-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .experience-meta svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1rem 0;
+    }
+
+    .experience-list {
+      list-style: none;
+    }
+
+    .experience-list li {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      color: var(--muted-foreground);
+      font-size: 0.9rem;
+    }
+
+    .experience-list svg {
+      width: 18px;
+      height: 18px;
+      color: var(--primary);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Projects Section */
+    .project-card {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(45, 212, 191, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .project-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--primary);
+    }
+
+    .project-content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .project-content p {
+      color: var(--muted-foreground);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .project-tag {
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      background: rgba(247, 250, 252, 0.05);
+      color: var(--muted-foreground);
+      font-size: 0.75rem;
+    }
+
+    /* Certifications Section */
+    .cert-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .cert-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(45, 212, 191, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .cert-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--primary);
+    }
+
+    .cert-content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+    }
+
+    .cert-content p {
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+    }
+
+    /* Contact Section */
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      background: rgba(247, 250, 252, 0.03);
+      border: 1px solid var(--border);
+      color: var(--foreground);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--muted-foreground);
+    }
+
+    .form-group textarea {
+      resize: none;
+      min-height: 120px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem;
+      border-radius: 9999px;
+      border: 2px solid var(--primary);
+      background: transparent;
+      color: var(--primary);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background: var(--primary);
+      color: var(--background);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .email-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--muted-foreground);
+      text-decoration: none;
+      font-size: 0.875rem;
+      margin-top: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .email-link:hover {
+      color: var(--primary);
+    }
+
+    .email-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .success-message {
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(45, 212, 191, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    .success-icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--primary);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-image {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
+      .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .btn-group {
+        justify-content: center;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 15, 23, 0.98);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      color: var(--foreground);
+      text-decoration: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+
+    .mobile-menu-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--foreground);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation - Always Visible -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo">AK</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="mobile-menu-btn" onclick="toggleMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="toggleMenu()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <a href="#about" onclick="toggleMenu()">About</a>
+    <a href="#skills" onclick="toggleMenu()">Skills</a>
+    <a href="#experience" onclick="toggleMenu()">Experience</a>
+    <a href="#projects" onclick="toggleMenu()">Projects</a>
+    <a href="#certifications" onclick="toggleMenu()">Certifications</a>
+    <a href="#contact" onclick="toggleMenu()">Contact</a>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-image">
+          <img src="images/hero_portrait.jpg" alt="Anusha Kumar">
+        </div>
+        <div class="hero-text">
+          <div class="eyebrow">Data Engineer & ML Practitioner</div>
+          <h1>Anusha Kumar</h1>
+          <p>I build reliable data pipelines and practical ML solutions—clear systems, clean code, and measurable outcomes.</p>
+          <div class="btn-group">
+            <a href="/resume.pdf" download class="btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download Resume
+            </a>
+            <a href="#projects" class="btn-link">
+              View Projects
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2>A Day in My Workflow</h2>
+      <div class="workflow-item">
+        <div class="workflow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </div>
+        <div>
+          <h3>Morning: structure.</h3>
+          <p>I start by reviewing pipeline runs and logs—catching anomalies early and keeping data quality high.</p>
+        </div>
+      </div>
+      <div class="workflow-item">
+        <div class="workflow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <div>
+          <h3>Midday: build.</h3>
+          <p>I spend most of the day writing transformations, optimizing queries, and versioning models with clean, documented code.</p>
+        </div>
+      </div>
+      <div class="workflow-item">
+        <div class="workflow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+        </div>
+        <div>
+          <h3>Evening: learn.</h3>
+          <p>I experiment with new tools, read papers, and prototype ideas that can turn into real features.</p>
+        </div>
+      </div>
+      <a href="mailto:anushvijay0412@gmail.com" class="btn-primary" style="margin-top: 1rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        Email Me
+      </a>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2>Tools I Use</h2>
+      <p class="section-subtitle">A practical stack for data engineering, ML, and product thinking.</p>
+      
+      <div class="skill-category">
+        <h3>Languages</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">SQL</span>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3>Data Engineering</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">Azure Data Factory</span>
+          <span class="skill-pill">Microsoft Fabric</span>
+          <span class="skill-pill">ETL Pipelines</span>
+          <span class="skill-pill">Data Modeling</span>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3>ML / AI</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">CNNs</span>
+          <span class="skill-pill">Classification</span>
+          <span class="skill-pill">Transfer Learning</span>
+          <span class="skill-pill">TensorFlow</span>
+          <span class="skill-pill">NLP</span>
+          <span class="skill-pill">Generative AI</span>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3>Visualization</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">Power BI</span>
+          <span class="skill-pill">Tableau</span>
+          <span class="skill-pill">Excel</span>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3>Tools</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">Streamlit</span>
+          <span class="skill-pill">Jupyter</span>
+          <span class="skill-pill">Figma</span>
+          <span class="skill-pill">Canva</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+      <h2>Where I've Worked</h2>
+      <p class="section-subtitle">Internship and projects that shaped my craft.</p>
+      
+      <div class="card">
+        <div class="experience-header">
+          <div class="experience-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <div class="experience-title">
+            <h3>Data Engineer Intern</h3>
+            <p class="company">Neostats</p>
+          </div>
+        </div>
+        
+        <div class="experience-meta">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            Bangalore, India
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Apr 2025 – Oct 2025
+          </span>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <ul class="experience-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            Built scalable pipelines in Microsoft Fabric and Azure.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            Optimized SQL (indexing, partitioning) cutting runtime by 40%.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            Validated data quality and lineage for governed datasets.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2>Featured Work</h2>
+      <p class="section-subtitle">End-to-end projects that move from idea to production.</p>
+      
+      <div class="card project-card">
+        <div class="project-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+          </svg>
+        </div>
+        <div class="project-content">
+          <h3>Clinical Data Pipeline</h3>
+          <p>Azure Data Factory → Azure SQL → Power BI dashboards for compliance.</p>
+          <div class="project-tags">
+            <span class="project-tag">Azure</span>
+            <span class="project-tag">SQL</span>
+            <span class="project-tag">Power BI</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card project-card">
+        <div class="project-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
+            <path d="M7 2v20"></path>
+            <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
+          </svg>
+        </div>
+        <div class="project-content">
+          <h3>Nutrient Matching Engine</h3>
+          <p>Rule-based + ML filtering for dietary compliance datasets.</p>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">ML</span>
+            <span class="project-tag">SQL</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card project-card">
+        <div class="project-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"></path>
+            <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"></path>
+            <circle cx="20" cy="10" r="2"></circle>
+          </svg>
+        </div>
+        <div class="project-content">
+          <h3>Skin Disease Detection</h3>
+          <p>CNN + EfficientNetB0 with augmentation and regularization.</p>
+          <div class="project-tags">
+            <span class="project-tag">TensorFlow</span>
+            <span class="project-tag">CNN</span>
+            <span class="project-tag">Transfer Learning</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+      <h2>Credentials</h2>
+      <p class="section-subtitle">Certifications that back the work.</p>
+      
+      <div class="card cert-item">
+        <div class="cert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="7"></circle>
+            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+          </svg>
+        </div>
+        <div class="cert-content">
+          <h3>Machine Learning with Python</h3>
+          <p>Infosys SpringBoard</p>
+        </div>
+      </div>
+      
+      <div class="card cert-item">
+        <div class="cert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="7"></circle>
+            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+          </svg>
+        </div>
+        <div class="cert-content">
+          <h3>Azure Fundamentals</h3>
+          <p>Microsoft Learn</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Let's Work Together</h2>
+      <p class="section-subtitle">Tell me what you're building. I'll reply within 1–2 business days.</p>
+      
+      <div class="card">
+        <form action="https://formspree.io/f/xzdadkav" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          
+          <button type="submit" class="btn-submit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            Send Message
+          </button>
+          
+          <div style="text-align: center;">
+            <a href="mailto:anushvijay0412@gmail.com" class="email-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              Prefer email? anushvijay0412@gmail.com
+            </a>
+          </div>
+        </form>
+        
+        <div id="successMessage" class="success-message" style="display: none;">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </div>
+          <h3>Message Sent!</h3>
+          <p style="color: var(--muted-foreground);">I'll get back to you soon.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    }
+  </script>
+  
+  <style>
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</body>
+</html>
